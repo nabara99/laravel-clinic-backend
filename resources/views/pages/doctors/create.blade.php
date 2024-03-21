@@ -118,6 +118,36 @@
                                                 @enderror
                                             </div>
                                             <div class="col-4">
+                                                <label for="">Id IHS</label>
+                                                <input type="text" value="{{ old('ihs') }}"
+                                                    class="form-control @error('ihs')
+                                                    is-invalid
+                                                    @enderror"
+                                                    name="ihs">
+                                                    @error('ihs')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <label for="">NIK</label>
+                                                <input type="text" value="{{ old('nik') }}"
+                                                    class="form-control @error('nik')
+                                                    is-invalid
+                                                    @enderror"
+                                                    name="nik">
+                                                    @error('nik')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-4">
                                                 <label>Photo</label>
                                                 <input type="file" class="form-control" name="image" id="imageInput"
                                                     accept="image/*">

@@ -17,5 +17,7 @@ class Doctor extends Model
         'doctor_photo',
         'doctor_address',
         'sip',
+        'id_ihs',
+        'nik'
     ];
 }

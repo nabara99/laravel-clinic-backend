@@ -34,6 +34,8 @@ class DoctorController extends Controller
             'email' => 'required|unique:doctors,doctor_email',
             'address' => 'required',
             'sip' => 'required',
+            'ihs' => 'required',
+            'nik' => 'required',
         ]);
 
         $doctor = new Doctor();
@@ -43,6 +45,8 @@ class DoctorController extends Controller
         $doctor->doctor_email = $request->email;
         $doctor->doctor_address = $request->address;
         $doctor->sip = $request->sip;
+        $doctor->id_ihs = $request->ihs;
+        $doctor->nik = $request->nik;
 
         $doctor->save();
 
@@ -71,6 +75,8 @@ class DoctorController extends Controller
             'email' => 'required',
             'address' => 'required',
             'sip' => 'required',
+            'ihs' => 'required',
+            'nik' => 'required',
         ]);
 
         $doctor = Doctor::find($id);
@@ -80,6 +86,8 @@ class DoctorController extends Controller
         $doctor->doctor_email = $request->email;
         $doctor->doctor_address = $request->address;
         $doctor->sip = $request->sip;
+        $doctor->id_ihs = $request->ihs;
+        $doctor->nik = $request->nik;
         $doctor->save();
 
         if ($request->hasFile('image')) {

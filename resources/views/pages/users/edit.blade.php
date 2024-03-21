@@ -107,7 +107,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer text-right">
-                                        <button class="btn btn-primary" id="toastr-2">Update</button>
+                                        <button class="btn btn-primary">Update</button>
                                     </div>
                                 </form>
                             </div>

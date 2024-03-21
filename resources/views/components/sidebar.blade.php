@@ -12,7 +12,7 @@
                     <span>Dashboard</span></a>
             </li>
             @if(auth()->user()->role == 'admin')
-                <li class="{{ str_contains(Route::currentRouteName(), 'user.index') ? 'active' : '' }}">
+                <li class="{{ str_contains(Route::currentRouteName(), 'user') ? 'active' : '' }}">
                     <a href="{{ route('user.index') }}"><i class="fa-regular fa-user"></i>
                         <span>Pengguna</span></a>
                 </li>
@@ -20,6 +20,10 @@
             <li class="{{ str_contains(Route::currentRouteName(), 'doctor') ? 'active' : '' }}">
                 <a href="{{ route('doctor.index') }}"><i class="fa-solid fa-stethoscope"></i>
                     <span>Dokter</span></a>
+            </li>
+            <li class="{{ str_contains(Route::currentRouteName(), 'schedule') ? 'active' : '' }}">
+                <a href="{{ route('schedule.index') }}"><i class="fa-regular fa-clock"></i>
+                    <span>Jadwal Dokter</span></a>
             </li>
         </ul>
     </aside>

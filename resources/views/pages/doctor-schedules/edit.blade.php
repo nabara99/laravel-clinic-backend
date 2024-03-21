@@ -22,7 +22,7 @@
                             <div class="card-header">
                                 <h4>Edit Dokter</h4>
                                 <div class="card-header-action">
-                                    <a href="{{ route('doctor.index') }}" class="btn btn-primary btn-icon"><i
+                                    <a href="{{ route('doctor.index') }}" class="btn btn-outline-primary btn-icon"><i
                                             class="fa-solid fa-arrow-rotate-left"></i></a>
                                 </div>
                             </div>
@@ -173,7 +173,7 @@
                                         </div>
                                     </div>
                                     <div class="card-footer text-right">
-                                        <button class="btn btn-primary">Simpan</button>
+                                        <button class="btn btn-outline-primary">Simpan</button>
                                     </div>
                                 </form>
                             </div>

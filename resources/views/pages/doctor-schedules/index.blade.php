@@ -20,9 +20,9 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Daftar Dokter</h4>
+                                <h4>Jadwal Dokter</h4>
                                 <div class="card-header-action">
-                                    <a href="{{ route('doctor.create') }}" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i> dokter</a>
+                                    <a href="{{ route('schedule.create') }}" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i> dokter</a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -42,33 +42,26 @@
                                     <table class="table-striped table">
                                         <tr>
                                             <th>Nama</th>
-                                            <th>Email</th>
-                                            <th>HP</th>
-                                            <th>Spesialis</th>
-                                            <th>Photo</th>
+                                            <th>Hari</th>
+                                            <th>Waktu</th>
+                                            <th>Status</th>
+                                            <th>Catatan</th>
                                             <th>Aksi</th>
                                         </tr>
-                                        @foreach ($doctors as $doctor)
+                                        @foreach ($doctorSchedules as $schedule)
                                             <tr>
-                                                <td>{{ $doctor->doctor_name }}</td>
-                                                <td>{{ $doctor->doctor_email }}</td>
-                                                <td>{{ $doctor->doctor_phone }}</td>
-                                                <td>{{ $doctor->doctor_specialist }}</td>
-                                                <td>
-                                                    @if ($doctor->doctor_photo)
-                                                        <img src="{{ asset('/' . $doctor->doctor_photo) }}" alt=""
-                                                            width="60px" class="img-thumbnail">
-                                                    @else
-                                                        <span class="badge badge-danger">No Image</span>
-                                                    @endif
-                                                </td>
+                                                <td>{{ $schedule->doctor->doctor_name }}</td>
+                                                <td>{{ $schedule->day }}</td>
+                                                <td>{{ $schedule->time }}</td>
+                                                <td>{{ $schedule->status }}</td>
+                                                <td>{{ $schedule->note }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-left">
-                                                        <a href="{{ route('doctor.edit', $doctor->id) }}"
+                                                        <a href=""
                                                             class="btn btn-sm btn-outline-info btn-icon" title="Edit">
                                                             <i class="fa-solid fa-pencil"></i>
                                                         </a>
-                                                        <form action="{{ route('doctor.destroy', $doctor->id) }}" method="POST"
+                                                        <form action="" method="POST"
                                                             class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE" />
                                                             <input type="hidden" name="_token"
@@ -86,7 +79,7 @@
                                     </table>
                                 </div>
                                 <div class="float-right">
-                                    {{ $doctors->withQueryString()->links() }}
+                                    {{ $doctorSchedules->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>
