@@ -20,17 +20,17 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Jadwal Dokter</h4>
+                                <h4>Daftar Pasien</h4>
                                 <div class="card-header-action">
-                                    <a href="{{ route('schedule.create') }}" class="btn btn-primary"><i class="fa-solid fa-circle-plus"></i> dokter</a>
+                                    <a href="{{ route('patient.create') }}" class="btn btn-primary">Buat Pasien</a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="float-right">
                                     <form method="GET">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Cari dokter"
-                                                name="doctor_name">
+                                            <input type="text" class="form-control" placeholder="Cari pengguna"
+                                                name="name">
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                             </div>
@@ -41,27 +41,29 @@
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
+                                            <th>No.</th>
+                                            <th>NIK</th>
                                             <th>Nama</th>
-                                            <th>Hari</th>
-                                            <th>Waktu</th>
-                                            <th>Status</th>
-                                            <th>Catatan</th>
+                                            <th>Email</th>
+                                            <th>Hp</th>
+                                            <th>Tgl Lahir</th>
                                             <th>Aksi</th>
                                         </tr>
-                                        @foreach ($doctorSchedules as $schedule)
+                                        @foreach ($patients as $index => $patient)
                                             <tr>
-                                                <td>{{ $schedule->doctor_name }}</td>
-                                                <td>{{ $schedule->day }}</td>
-                                                <td>{{ $schedule->time }}</td>
-                                                <td>{{ $schedule->status }}</td>
-                                                <td>{{ $schedule->note }}</td>
+                                                <td>{{$index + $patients->firstItem( )}}</td>
+                                                <td>{{ $patient->nik }}</td>
+                                                <td>{{ $patient->name }}</td>
+                                                <td>{{ $patient->email }}</td>
+                                                <td>{{ $patient->phone }}</td>
+                                                <td>{{ date('d F Y', strtotime($patient->birth_date)) }}</td>
                                                 <td>
                                                     <div class="d-flex justify-content-left">
-                                                        <a href=" "
+                                                        <a href="{{ route('patient.edit', $patient->id) }}"
                                                             class="btn btn-sm btn-outline-info btn-icon" title="Edit">
                                                             <i class="fa-solid fa-pencil"></i>
                                                         </a>
-                                                        <form action="{{ route('schedule.destroy', $schedule->id) }}" method="POST"
+                                                        <form action="{{ route('patient.destroy', $patient->id) }}" method="POST"
                                                             class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE" />
                                                             <input type="hidden" name="_token"
@@ -79,7 +81,7 @@
                                     </table>
                                 </div>
                                 <div class="float-right">
-                                    {{ $doctorSchedules->withQueryString()->links() }}
+                                    {{ $patients->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DoctorController;
+use App\Http\Controllers\Api\DoctorScheduleController;
+use App\Http\Controllers\Api\PatientController;
+use App\Http\Controllers\Api\ServiceMedicinesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +22,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('login', [AuthController::class, 'login']);
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+
+Route::apiResource('doctors', DoctorController::class)->middleware('auth:sanctum');
+Route::apiResource('patients', PatientController::class)->middleware('auth:sanctum');
+Route::apiResource('doctor-schedules', DoctorScheduleController::class)->middleware('auth:sanctum');
+Route::apiResource('services', ServiceMedicinesController::class)->middleware('auth:sanctum');

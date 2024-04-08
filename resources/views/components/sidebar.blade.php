@@ -25,6 +25,10 @@
                 <a href="{{ route('schedule.index') }}"><i class="fa-regular fa-clock"></i>
                     <span>Jadwal Dokter</span></a>
             </li>
+            <li class="{{ str_contains(Route::currentRouteName(), 'patient') ? 'active' : '' }}">
+                <a href="{{ route('patient.index') }}"><i class="fa-solid fa-hospital-user"></i>
+                    <span>Pasien</span></a>
+            </li>
         </ul>
     </aside>
 </div>

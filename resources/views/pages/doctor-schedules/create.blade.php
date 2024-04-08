@@ -20,149 +20,119 @@
                     <div class="col-12 col-md-12 col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Tambah Dokter</h4>
+                                <h4>Tambah Jadwal Dokter</h4>
                                 <div class="card-header-action">
-                                    <a href="{{ route('doctor.index') }}" class="btn btn-outline-primary btn-icon"><i
+                                    <a href="{{ route('schedule.index') }}" class="btn btn-primary btn-icon"><i
                                             class="fa-solid fa-arrow-rotate-left"></i></a>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('doctor.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('schedule.store') }}" method="POST">
                                     @csrf
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-4">
-                                                <label>Nama</label>
-                                                <input type="text" value="{{ old('name') }}"
-                                                    class="form-control @error('name')
+                                                <label class="form-label">Dokter</label>
+                                                <select
+                                                    class="form-control select2 select2-hidden-accessible @error('doctor_id')
                                                     is-invalid
                                                 @enderror"
-                                                    name="name">
-                                                @error('name')
+                                                    style="width: 100%;" tabindex="-1" aria-hidden="true" name="doctor_id">
+                                                    <option value="" selected disabled>-- Pilih Dokter --</option>
+                                                    @foreach ($doctors as $doctor)
+                                                        <option value="{{ $doctor->id }}"
+                                                            {{ old('doctor_id') == $doctor->id ? 'selected' : '' }}>
+                                                            {{ $doctor->doctor_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('doctor_id')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
                                             </div>
-                                            <div class="col-4">
-                                                <label>Email</label>
-                                                <input type="email" value="{{ old('email') }}"
-                                                    class="form-control @error('email')
-                                                    is-invalid
-                                                @enderror"
-                                                    name="email">
-                                                @error('email')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
+                                            <div class="col-2">
+                                                <label>Jadwal Senin</label>
+                                                <input type="text" value="{{ old('senin') }}"
+                                                    class="form-control"
+                                                    name="senin">
                                             </div>
-                                            <div class="col-4">
-                                                <label>Hp</label>
-                                                <input type="number" value="{{ old('phone') }}"
-                                                    class="form-control @error('phone')
-                                                    is-invalid
-                                                @enderror"
-                                                    name="phone">
-                                                @error('phone')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
+                                            <div class="col-2">
+                                                <label>Jadwal Selasa</label>
+                                                <input type="text" value="{{ old('selasa') }}"
+                                                    class="form-control"
+                                                    name="selasa">
+                                            </div>
+                                            <div class="col-2">
+                                                <label>Jadwal Rabu</label>
+                                                <input type="text" value="{{ old('rabu') }}"
+                                                    class="form-control"
+                                                    name="rabu">
+                                            </div>
+                                            <div class="col-2">
+                                                <label>Jadwal Kamis</label>
+                                                <input type="text" value="{{ old('kamis') }}"
+                                                    class="form-control"
+                                                    name="kamis">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-12">
-                                                <label>Alamat</label>
-                                                <input type="text" value="{{ old('address') }}"
-                                                    class="form-control @error('address')
-                                                    is-invalid
-                                                    @enderror"
-                                                    name="address">
-                                                    @error('address')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
+                                            <div class="col-2">
+                                                <label>Jadwal Jum'at</label>
+                                                <input type="text" value="{{ old('jumat') }}"
+                                                    class="form-control"
+                                                    name="jumat">
+                                            </div>
+                                            <div class="col-2">
+                                                <label>Jadwal Sabtu</label>
+                                                <input type="text" value="{{ old('sabtu') }}"
+                                                    class="form-control"
+                                                    name="sabtu">
+                                            </div>
+                                            <div class="col-2">
+                                                <label>Jadwal Ahad</label>
+                                                <input type="text" value="{{ old('ahad') }}"
+                                                    class="form-control"
+                                                    name="ahad">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <div class="row">
                                             <div class="col-4">
-                                                <label>SIP</label>
-                                                <input type="text" value="{{ old('sip') }}"
-                                                    class="form-control @error('sip')
+                                                <label>Status</label>
+                                                <div class="selectgroup w-100">
+                                                    <label class="selectgroup-item">
+                                                        <input type="radio" name="status" value="active"
+                                                            class="selectgroup-input" checked="">
+                                                        <span class="selectgroup-button">Active</span>
+                                                    </label>
+                                                    <label class="selectgroup-item">
+                                                        <input type="radio" name="status" value="inactive"
+                                                            class="selectgroup-input" checked="">
+                                                        <span class="selectgroup-button">Inactive</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-8">
+                                                <label>Catatan</label>
+                                                <input type="text" value="{{ old('note') }}"
+                                                    class="form-control @error('note')
                                                     is-invalid
                                                 @enderror"
-                                                    name="sip">
-                                                @error('sip')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                            <div class="col-4">
-                                                <label for="">Spesialis</label>
-                                                <input type="text" value="{{ old('specialist') }}"
-                                                    class="form-control @error('specialist')
-                                                    is-invalid
-                                                    @enderror"
-                                                    name="specialist">
-                                                    @error('specialist')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                            <div class="col-4">
-                                                <label for="">Id IHS</label>
-                                                <input type="text" value="{{ old('ihs') }}"
-                                                    class="form-control @error('ihs')
-                                                    is-invalid
-                                                    @enderror"
-                                                    name="ihs">
-                                                    @error('ihs')
+                                                    name="note">
+                                                @error('note')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <label for="">NIK</label>
-                                                <input type="text" value="{{ old('nik') }}"
-                                                    class="form-control @error('nik')
-                                                    is-invalid
-                                                    @enderror"
-                                                    name="nik">
-                                                    @error('nik')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                            <div class="col-4">
-                                                <label>Photo</label>
-                                                <input type="file" class="form-control" name="image" id="imageInput"
-                                                    accept="image/*">
-                                                <img id="imagePreview" src="#" alt="Doctor Image"
-                                                    style="max-width: 200px; display: none;">
-                                                @error('image')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="card-footer text-right">
-                                        <button class="btn btn-outline-primary">Simpan</button>
+                                        <button class="btn btn-primary">Simpan</button>
                                     </div>
                                 </form>
                             </div>
