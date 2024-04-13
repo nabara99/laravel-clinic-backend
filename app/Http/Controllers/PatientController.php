@@ -66,8 +66,9 @@ class PatientController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Patient $patient)
     {
-        //
+        $patient->delete();
+        return redirect()->route('patient.index')->with('success', 'Data Pasien berhasil dihapus');
     }
 }

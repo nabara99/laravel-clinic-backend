@@ -29,6 +29,10 @@
                 <a href="{{ route('patient.index') }}"><i class="fa-solid fa-hospital-user"></i>
                     <span>Pasien</span></a>
             </li>
+            <li class="{{ str_contains(Route::currentRouteName(), 'service-medicines') ? 'active' : '' }}">
+                <a href="{{ route('service-medicines.index') }}"><i class="fa-solid fa-pills"></i>
+                    <span>Layanan Medis</span></a>
+            </li>
         </ul>
     </aside>
 </div>
